@@ -1,9 +1,7 @@
-import 'package:encomendas_crud/app/database/sqlite/connection.dart';
-import 'package:encomendas_crud/app/database/sqlite/script.dart';
+import 'package:encomendas_crud/app/database/sqlite/dao/encomendas_dao_impl.dart';
+import 'package:encomendas_crud/app/domain/entities/encomenda.dart';
 import 'package:encomendas_crud/app/my_app.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
 
 class EncomendaList extends StatelessWidget {
 //  final lista=[
@@ -13,9 +11,8 @@ class EncomendaList extends StatelessWidget {
 
 //  ];
 
-  Future<List<Map<String, dynamic>>> _buscar() async {
-    Database db = await Connection.get(); 
-    return db.query('encomenda');
+  Future<List<Encomenda>> _buscar() async {
+    return EncomendasDAOImpl().find();
   }
 
   @override
@@ -24,7 +21,7 @@ class EncomendaList extends StatelessWidget {
         future: _buscar(),
         builder: (context, futuro) {
           if (futuro.hasData) {
-            var lista = futuro.data;
+            List<Encomenda> lista = futuro.data;
             return Scaffold(
               appBar: AppBar(
                 title: Text("Lista de Encomendas"),
@@ -42,11 +39,11 @@ class EncomendaList extends StatelessWidget {
                 itemBuilder: (context, i) {
                   var encomenda = lista[i];
                   var avatar = CircleAvatar(
-                      backgroundImage: NetworkImage(encomenda['url_avatar']));
+                      backgroundImage: NetworkImage(encomenda.urlAvatar));
                   return ListTile(
                     leading: avatar,
-                    title: Text(encomenda['nome']),
-                    subtitle: Text(encomenda['pedido']),
+                    title: Text(encomenda.nome),
+                    subtitle: Text(encomenda.pedido),
                     trailing: Container(
                       width: 100,
                       child: Row(
