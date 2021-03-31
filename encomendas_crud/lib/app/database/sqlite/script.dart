@@ -1,7 +1,7 @@
 
 final createTable='''
   CREATE TABLE encomenda(
-    id INT PRIMARY KEY 
+    id INTEGER NOT NULL PRIMARY KEY 
     ,nome VARCHAR(200) NOT NULL
     ,cpf CHAR(14) NOT NULL
     ,pedido VARCHAR(255) NOT NULL
