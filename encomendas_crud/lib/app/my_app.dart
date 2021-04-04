@@ -1,3 +1,4 @@
+import 'package:encomendas_crud/app/view/encomenda_details.dart';
 import 'package:encomendas_crud/app/view/encomenda_form.dart';
 import 'package:flutter/material.dart';
 
@@ -6,12 +7,14 @@ import 'view/encomenda_list.dart';
 class MyApp extends StatelessWidget {
   static const HOME="/";
   static const ENCOMENDA_FORM='encomenda-form';
+  static const ENCOMENDA_DETAILS='encomenda-details';
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -27,6 +30,7 @@ class MyApp extends StatelessWidget {
       routes: {
         HOME:(context)=>EncomendaList(),
         ENCOMENDA_FORM:(context)=>EncomendaForm(),
+        ENCOMENDA_DETAILS:(context)=>EncomendaDetails()
       },
     );
   }

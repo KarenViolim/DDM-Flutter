@@ -1,6 +1,6 @@
 import 'package:encomendas_crud/app/domain/entities/encomenda.dart';
 import 'package:encomendas_crud/app/domain/services/encomendas_services.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 
@@ -32,6 +32,10 @@ abstract class _EncomendaListBack with Store {
     Navigator.of(context)
         .pushNamed(MyApp.ENCOMENDA_FORM, arguments: encomenda)
         .then(refreshList);
+  }
+
+  goToDetails(BuildContext context, Encomenda encomenda){
+    Navigator.of(context).pushNamed(MyApp.ENCOMENDA_DETAILS, arguments: encomenda);
   }
 
 //excluir

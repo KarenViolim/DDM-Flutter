@@ -1,6 +1,4 @@
-import 'package:encomendas_crud/app/database/sqlite/dao/encomendas_dao_impl.dart';
 import 'package:encomendas_crud/app/domain/entities/encomenda.dart';
-import 'package:encomendas_crud/app/my_app.dart';
 import 'package:encomendas_crud/app/view/encomenda_list_back.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -53,7 +51,7 @@ class EncomendaList extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.add),
               onPressed: () {
-                Navigator.of(context).pushNamed(MyApp.ENCOMENDA_FORM);
+                _back.goToForm(context);
               },
             )
           ],
@@ -73,6 +71,9 @@ class EncomendaList extends StatelessWidget {
                       return ListTile(
                         leading: circleAvatar(encomenda.urlAvatar),
                         title: Text(encomenda.nome),
+                        onTap: (){
+                          _back.goToDetails(context, encomenda);
+                        },
                         subtitle: Text(encomenda.pedido),
                         trailing: Container(
                           width: 100,
