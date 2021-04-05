@@ -4,10 +4,8 @@ import 'package:encomendas_crud/app/domain/interfaces/encomendas_dao.dart';
 import 'package:get_it/get_it.dart';
 
 class EncomendaService {
-  //não importa como faz ou como fez, o importante é que tenha acesso as operações do banco.
   var _dao = GetIt.I.get<EncomendasDAO>();
-  //tem que salvar uma encomenda, ter a possibilidade de alterar, excluir e listar todas as encomendas
-  // No DAO só salva, aqui antes de salva, valida as regras.
+
   save(Encomenda encomenda) {
     validateNome(encomenda.nome);
     validateCPF(encomenda.cpf);
@@ -67,8 +65,4 @@ class EncomendaService {
       throw new DomainLayerException('Formato inválido.');
     }
   }
-  //Diferença do DAO para o Serviço da Camada de Domínio:
-  // O DAO te dá acesso as operações de um banco de dados específico.
-  //Já o serviço ele usa o DAO para ter acesso as operações de um banco mas o objetivo é  
-  //definir as funcionalidades do negócio.
 }

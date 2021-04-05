@@ -52,7 +52,8 @@ class EncomendasDAOImpl implements EncomendasDAO {
         encomenda.cpf,
         encomenda.pedido,
         encomenda.telefone,
-        encomenda.urlAvatar
+        encomenda.urlAvatar,
+        encomenda.id
       ]);
     }
   }
